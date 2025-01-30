@@ -1,4 +1,5 @@
-# asdf-tfsort [![Build](https://github.com/ziroux/asdf-tfsort/actions/workflows/build.yml/badge.svg)](https://github.com/ziroux/asdf-tfsort/actions/workflows/build.yml) [![Lint](https://github.com/ziroux/asdf-tfsort/actions/workflows/lint.yml/badge.svg)](https://github.com/ziroux/asdf-tfsort/actions/workflows/lint.yml) <!-- omit in toc -->
+# asdf-tfsort <!-- omit in toc -->
+<!-- [![Build](https://github.com/ziroux/asdf-tfsort/actions/workflows/build.yml/badge.svg)](https://github.com/ziroux/asdf-tfsort/actions/workflows/build.yml) [![Lint](https://github.com/ziroux/asdf-tfsort/actions/workflows/lint.yml/badge.svg)](https://github.com/ziroux/asdf-tfsort/actions/workflows/lint.yml) -->
 
 [tfsort](https://github.com/AlexNabokikh/tfsort) plugin for the [asdf version manager](https://asdf-vm.com).
 
