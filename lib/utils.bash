@@ -41,8 +41,7 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-	# TODO: Adapt the release URL convention for tfsort
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	url="$GH_REPO/releases/download/v${version}/tfsort_${version}_$(get_platform)_$(get_arch).tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
@@ -59,9 +58,9 @@ install_version() {
 
 	(
 		mkdir -p "$install_path"
+
 		cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
 
-		# TODO: Assert tfsort executable exists.
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
 		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
@@ -71,4 +70,33 @@ install_version() {
 		rm -rf "$install_path"
 		fail "An error occurred while installing $TOOL_NAME $version."
 	)
+}
+
+get_arch() {
+	local machine
+	machine=$(uname -m)
+
+	if [[ "$machine" =~ "x86_64" ]]; then
+		echo "amd64"
+		return
+	fi
+
+	echo $machine
+}
+
+get_platform() {
+	local uname
+	uname=$(uname)
+
+	if [[ "$uname" =~ "Darwin" ]]; then
+		echo "darwin"
+		return
+	fi
+
+	if [[ "$uname" =~ "Linux" ]]; then
+		echo "linux"
+		return
+	fi
+
+	fail "Unknown platform"
 }
